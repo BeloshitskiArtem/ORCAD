@@ -15,7 +15,7 @@ namespace AirScrewPlugin.Model
         /// <returns>Проверенные символы в виде массива</returns>
         public static string ParametrCheck(string value)
         {
-            const string allowedChars = ".1234567890";
+            const string allowedChars = ",.1234567890";
             return new string(value.Where(character =>
            allowedChars.Contains(character)).ToArray());
         }
