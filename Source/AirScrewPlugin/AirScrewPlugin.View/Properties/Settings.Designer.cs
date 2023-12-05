@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Air_Screw.Properties
+namespace AirScrewPlugin.View.Properties
 {
 
 
