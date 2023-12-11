@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AirScrewPlugin.Model;
+using AirScrewPlugin.Wrapper;
+
 
 namespace AirScrewPlugin.View
 {
@@ -16,11 +18,14 @@ namespace AirScrewPlugin.View
         public MainForm()
         {
             InitializeComponent();
-        } 
+        }
+
+        private AirScrewBuilder _builder = new AirScrewBuilder();
 
         private void buttonBuild_Click(object sender, EventArgs e)
         {
-            AirScrewParametrs parametrs = new AirScrewParametrs(150, 1000, 10, 13, 3);
+            AirScrewParametrs parametrs = new AirScrewParametrs(25, 1000, 10, 19, 2);
+            _builder.BuildAirScrew(parametrs);
         }
 
         private void textBoxBladeWidth_TextChanged(object sender, EventArgs e)

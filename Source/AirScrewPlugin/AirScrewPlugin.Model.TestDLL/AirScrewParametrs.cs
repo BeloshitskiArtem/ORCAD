@@ -46,7 +46,7 @@ namespace AirScrewPlugin.Model
                                      float outerRadius,
                                      float numberOfBlades)
             {
-                _bladeWidth.MinValue = 50;
+                _bladeWidth.MinValue = 5;
                 _bladeWidth.MaxValue = 900;
                 BladeWidth = bladeWidth; //150
 
@@ -64,8 +64,8 @@ namespace AirScrewPlugin.Model
                 _outerRadius.MaxValue = InnerRadius + (InnerRadius / 100) * 150;
                 OuterRadius = outerRadius;
 
-                _numberOfBlades.MinValue = 2;
-                _numberOfBlades.MaxValue = OuterRadius / BladeWidth;
+                _numberOfBlades.MinValue = 0;
+                _numberOfBlades.MaxValue = ((float)6.283 * OuterRadius) / BladeWidth;
                 NumberOfBlades = numberOfBlades; // 3;
             }
             public float BladeWidth
@@ -147,6 +147,7 @@ namespace AirScrewPlugin.Model
                     }
                 }
             }
-        }
     }
+}
+
 

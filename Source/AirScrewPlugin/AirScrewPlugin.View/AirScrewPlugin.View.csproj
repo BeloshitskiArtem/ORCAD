@@ -84,6 +84,10 @@
       <Project>{e7bbb9d9-1618-4ddf-8b7c-2ff2403bb050}</Project>
       <Name>AirScrewPlugin.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AirScrewPlugin.Wrapper\AirScrewPlugin.Wrapper.csproj">
+      <Project>{01a54e53-2be8-4db2-abcc-2c0c8ba576d1}</Project>
+      <Name>AirScrewPlugin.Wrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
