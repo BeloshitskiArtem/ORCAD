@@ -126,12 +126,23 @@ namespace AirScrewPlugin.Wrapper
         /// <summary>
         /// Определение эскиза инициализации
         /// </summary>
-        public void InitializationSketchDefinition()
+        public void CreateSketchOnPlaneXOY()
         {
             Sketch = Part.NewEntity((short)Obj3dType.o3d_sketch);
             DefinitionSketch = Sketch.GetDefinition();
             DefinitionSketch.SetPlane(Part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY));
             Sketch.Create();
+        }
+
+        /// <summary>
+        /// Определение эскиза инициализации
+        /// </summary>
+        public void CreateSketchOnPlaneYOZ()
+        {
+            Sketch = Part.NewEntity((short)Obj3dType.o3d_sketch);
+            DefinitionSketch = Sketch.GetDefinition();
+            DefinitionSketch.SetPlane(Part.GetDefaultEntity((short)Obj3dType.o3d_planeYOZ));
+            Sketch.Create(); 
         }
 
         /// <summary>
@@ -150,15 +161,12 @@ namespace AirScrewPlugin.Wrapper
        /// </summary>
         public void CreateLineSed()
         {
-            Sketch = Part.NewEntity((short)Obj3dType.o3d_sketch);
-            DefinitionSketch = Sketch.GetDefinition();
-            DefinitionSketch.SetPlane(Part.GetDefaultEntity((short)Obj3dType.o3d_planeYOZ));
-            Sketch.Create();
-
             Document2D = DefinitionSketch.BeginEdit();
             Document2D.ksLineSeg(-5, -10, -25, 15, 1);
+            Document2D.ksLineSeg(-5, -10, -5, -15, 1);
+            Document2D.ksLineSeg(-5, -15, -25, 10, 1);
+            Document2D.ksLineSeg(-25, 15, -25, 10, 1);
             DefinitionSketch.EndEdit();
-
         }
 
         /// <summary>

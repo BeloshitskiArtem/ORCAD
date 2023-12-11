@@ -24,11 +24,12 @@ namespace AirScrewPlugin.Wrapper
             _kompas3DWrapper.CreatePart();
 
             // Создание 
-            _kompas3DWrapper.InitializationSketchDefinition();
+            _kompas3DWrapper.CreateSketchOnPlaneXOY();
             _kompas3DWrapper.CreateCircle(parametrs.OuterRadius);
             _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeWidth + (parametrs.BladeWidth/100)*20);
+            _kompas3DWrapper.CreateSketchOnPlaneYOZ();
             _kompas3DWrapper.CreateLineSed();
-            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeLength);
+            _kompas3DWrapper.CreateExtrusionParam(75);//(parametrs.BladeLength);
         }
     }
 }
