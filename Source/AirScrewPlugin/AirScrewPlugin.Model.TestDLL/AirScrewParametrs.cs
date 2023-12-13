@@ -46,26 +46,26 @@ namespace AirScrewPlugin.Model
                                      float outerRadius,
                                      float numberOfBlades)
             {
-                _bladeWidth.MinValue = 5;
-                _bladeWidth.MaxValue = 900;
+                _bladeWidth.MinValue = 15;
+                _bladeWidth.MaxValue = 60;
                 BladeWidth = bladeWidth; //150
 
                 _bladeLength.MinValue = 100;
-                _bladeLength.MaxValue = 2000;
+                _bladeLength.MaxValue = 300;
                 BladeLength = bladeLength; //1000;
 
 
                 _innerRadius.MinValue = BladeLength / 100;
-                _innerRadius.MaxValue = BladeLength; //todo: продумать ограничение
+                _innerRadius.MaxValue = BladeLength / 2; 
                 InnerRadius = innerRadius; // 10;
 
 
-                _outerRadius.MinValue = InnerRadius + InnerRadius / 10;
-                _outerRadius.MaxValue = InnerRadius + (InnerRadius / 100) * 150;
+                _outerRadius.MinValue = InnerRadius + (InnerRadius / 10);
+                _outerRadius.MaxValue = InnerRadius + ((InnerRadius / 100) * 150);
                 OuterRadius = outerRadius;
 
-                _numberOfBlades.MinValue = 0;
-                _numberOfBlades.MaxValue = ((float)6.283 * OuterRadius) / BladeWidth;
+                _numberOfBlades.MinValue = 2;
+                _numberOfBlades.MaxValue = 15;
                 NumberOfBlades = numberOfBlades; // 3;
             }
             public float BladeWidth
@@ -143,7 +143,7 @@ namespace AirScrewPlugin.Model
                     }
                     else
                     {
-                        throw new Exception("Кол-во лопастей должно быть в диапазоне: [2 - Внешний радиус / Ширина лопасти]");
+                        throw new Exception("Кол-во лопастей должно быть в диапазоне: [2 - 15]");
                     }
                 }
             }

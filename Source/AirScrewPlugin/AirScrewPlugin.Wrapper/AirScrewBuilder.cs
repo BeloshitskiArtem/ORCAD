@@ -26,10 +26,18 @@ namespace AirScrewPlugin.Wrapper
             // Создание 
             _kompas3DWrapper.CreateSketchOnPlaneXOY();
             _kompas3DWrapper.CreateCircle(parametrs.OuterRadius);
-            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeWidth + (parametrs.BladeWidth/100)*20);
+            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeWidth+10);
+
+            // Создание лопастей
             _kompas3DWrapper.CreateSketchOnPlaneYOZ();
-            _kompas3DWrapper.CreateLineSed();
-            _kompas3DWrapper.CreateExtrusionParam(75);//(parametrs.BladeLength);
+            _kompas3DWrapper.CreateRectangleSed(parametrs.BladeWidth);
+            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeLength);
+            _kompas3DWrapper.CreateArrayBlade((int)parametrs.NumberOfBlades);
+
+            // Cоздание вырезания
+            _kompas3DWrapper.CreateSketchOnPlaneXOY();
+            _kompas3DWrapper.CreateCircle(parametrs.InnerRadius);
+            _kompas3DWrapper.CreateCutExtrusionParam();
         }
     }
 }

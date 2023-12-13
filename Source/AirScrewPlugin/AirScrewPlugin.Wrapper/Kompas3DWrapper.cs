@@ -61,26 +61,6 @@ namespace AirScrewPlugin.Wrapper
         private ksExtrusionParam ExtrProp { get; set; }   
 
         /// <summary>
-        /// Параметр третьего прямоугольника
-        /// </summary>
-        private ksRectangleParam ThirdRectangleParam { get; set; }
-
-        /// <summary>
-        /// Параметр первого эллипса
-        /// </summary>
-        private ksEllipseParam FirstEllipseParam { get; set; }
-
-        /// <summary>
-        /// Параметр второго эллипса
-        /// </summary>
-        private ksEllipseParam SecondEllipseParam { get; set; }
-
-        /// <summary>
-        /// Параметр третьего эллипса
-        /// </summary>
-        private ksEllipseParam ThirdEllipseParam { get; set; }
-
-        /// <summary>
         /// Параметр скругления
         /// </summary>
         private ksFilletDefinition FilletDefinition { get; set; }
@@ -146,27 +126,60 @@ namespace AirScrewPlugin.Wrapper
         }
 
         /// <summary>
-        /// Создание внешней окружности
+        /// Создание эскиза окружности
         /// </summary>
         /// <param name="outerRadius">Радиус внешней окружности основания винта</param>
-        public void CreateCircle(float outerRadius)
+        public void CreateCircle(float radius)
         {
             Document2D = DefinitionSketch.BeginEdit();
-            Document2D.ksCircle(0, 0, outerRadius, 1);
+            Document2D.ksCircle(0, 0, radius, 1);
             DefinitionSketch.EndEdit();
         }
 
-       /// <summary>
-       /// Построение отрезка - основания лопасти
-       /// </summary>
-        public void CreateLineSed()
+        public void CreateRounding()
         {
-            Document2D = DefinitionSketch.BeginEdit();
+            EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_edge);
+            ksFilletDefinition filletAPI5 = EntityExtr.GetDefinition();
+            ksEntityCollection array = filletAPI5.array();
+            ksEntity ENT = array.GetByIndex(0);
+            EntityExtr.excluded = true;
+            EntityExtr.Create();
+        }
+
+        /// <summary>
+        /// Построение отрезка - основания лопасти
+        /// </summary>
+        public void CreateRectangleSed(float width)
+        {
+            //Комментарий нужен для отладки алгоритма эскиза
+            /*Document2D = DefinitionSketch.BeginEdit();
             Document2D.ksLineSeg(-5, -10, -25, 15, 1);
-            Document2D.ksLineSeg(-5, -10, -5, -15, 1);
             Document2D.ksLineSeg(-5, -15, -25, 10, 1);
             Document2D.ksLineSeg(-25, 15, -25, 10, 1);
+            Document2D.ksLineSeg(-5, -10, -5, -15, 1);*/
+
+            Document2D = DefinitionSketch.BeginEdit();
+            Document2D.ksLineSeg(-5, -10, -width-5, width-10, 1);
+            Document2D.ksLineSeg(-5, -15, -width - 5, width - 15, 1);
+            Document2D.ksLineSeg(-5, -10, -5, -15, 1);
+            Document2D.ksLineSeg(-width - 5, width - 10, -width - 5, width - 15, 1);
             DefinitionSketch.EndEdit();
+        }
+
+        /// <summary>
+        /// Массив по концентрической сетке
+        /// </summary>
+        /// <param name="numberBlade">кол-во лопастей</param>
+        public void CreateArrayBlade(int numberBlade)
+        {
+            ksEntity EntityExtrCopy = EntityExtr;
+            EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_circularCopy);
+            ksCircularCopyDefinition CircCopyDef = EntityExtr.GetDefinition();
+            CircCopyDef.SetCopyParamAlongDir(numberBlade, 360, true, false);
+            CircCopyDef.SetAxis(Part.GetDefaultEntity((short)Obj3dType.o3d_axisOZ));
+            ksEntityCollection entCol = CircCopyDef.GetOperationArray();
+            entCol.Add(EntityExtrCopy);
+            EntityExtr.Create();
         }
 
         /// <summary>
@@ -182,6 +195,19 @@ namespace AirScrewPlugin.Wrapper
             ExtrProp.direction = (short)Direction_Type.dtNormal;
             ExtrProp.typeNormal = (short)End_Type.etBlind;
             ExtrProp.depthNormal = value;
+            EntityExtr.Create();
+        }
+
+        /// <summary>
+        /// Параметр вырезать выдавливания
+        /// </summary>
+        /// <param name="firstParameter">Значение выдавливания</param>
+        public void CreateCutExtrusionParam()
+        {
+            EntityExtr = Part.NewEntity((short)Obj3dType.o3d_cutExtrusion);
+            ksCutExtrusionDefinition CutExtrDef = EntityExtr.GetDefinition();
+            CutExtrDef.SetSideParam(false, (short)End_Type.etThroughAll, 155, 0, false);
+            CutExtrDef.SetSketch(Sketch);
             EntityExtr.Create();
         }
     }
