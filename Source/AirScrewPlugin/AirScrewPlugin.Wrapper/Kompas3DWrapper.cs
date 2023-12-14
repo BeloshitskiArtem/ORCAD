@@ -136,33 +136,65 @@ namespace AirScrewPlugin.Wrapper
             DefinitionSketch.EndEdit();
         }
 
+        /// <summary>
+        /// Скругление
+        /// </summary>
         public void CreateRounding()
         {
-            EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_edge);
+            /*EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_chamfer);
             ksFilletDefinition filletAPI5 = EntityExtr.GetDefinition();
             ksEntityCollection array = filletAPI5.array();
             ksEntity ENT = array.GetByIndex(0);
             EntityExtr.excluded = true;
-            EntityExtr.Create();
+            EntityExtr.Create();*/
+
+            /*ksFilletDefinition filletAPI5 = EntityExtr.GetDefinition();
+            ksEntityCollection array = filletAPI5.array();
+            ksEntity ENT = array.GetByIndex(0);
+            if (ENT.type == (int)Obj3dType.o3d_edge)
+            {
+                ksEdgeDefinition ed = ENT.GetDefinition();
+                //MessageBox.Show(ed.GetLength(0x1).ToString());
+            }*/
+
+            /*EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_chamfer);
+            ksFilletDefinition fillet = EntityExtr.GetDefinition();*/
+
+            var entityRotated =
+                (ksEntity)Part.NewEntity((short)Obj3dType.o3d_baseRotated);
+            var entityRotatedDefinition =
+                (ksBaseRotatedDefinition)entityRotated.GetDefinition();
+
+            entityRotatedDefinition.directionType = 0;
+            entityRotatedDefinition.SetSideParam(true, 360);
+            entityRotatedDefinition.SetSketch(Sketch);
+            entityRotated.Create();
         }
 
         /// <summary>
         /// Построение отрезка - основания лопасти
         /// </summary>
-        public void CreateRectangleSed(float width)
+        public void CreateRectangleSed(float width, int indexOfFormBlades)
         {
-            //Комментарий нужен для отладки алгоритма эскиза
-            /*Document2D = DefinitionSketch.BeginEdit();
-            Document2D.ksLineSeg(-5, -10, -25, 15, 1);
-            Document2D.ksLineSeg(-5, -15, -25, 10, 1);
-            Document2D.ksLineSeg(-25, 15, -25, 10, 1);
-            Document2D.ksLineSeg(-5, -10, -5, -15, 1);*/
-
             Document2D = DefinitionSketch.BeginEdit();
-            Document2D.ksLineSeg(-5, -10, -width-5, width-10, 1);
-            Document2D.ksLineSeg(-5, -15, -width - 5, width - 15, 1);
-            Document2D.ksLineSeg(-5, -10, -5, -15, 1);
-            Document2D.ksLineSeg(-width - 5, width - 10, -width - 5, width - 15, 1);
+            if (indexOfFormBlades == 0)
+            {
+                Document2D.ksLineSeg(-5, -10, -width - 5, width - 10, 1);
+                Document2D.ksLineSeg(-5, -15, -width - 5, width - 15, 1);
+                Document2D.ksLineSeg(-5, -10, -5, -15, 1);
+                Document2D.ksLineSeg(-width - 5, width - 10, -width - 5, width - 15, 1);
+            }
+            else
+            {
+                var EllipseParam = (ksEllipseParam)KompasObject.GetParamStruct(22);
+                EllipseParam.A = width-5;
+                EllipseParam.B = 4.5;
+                EllipseParam.xc = -5-width / 2;
+                EllipseParam.yc = 5-(width/2);
+                EllipseParam.angle = 45;
+                EllipseParam.style = 1;
+                Document2D.ksEllipse(EllipseParam);
+            }
             DefinitionSketch.EndEdit();
         }
 

@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 namespace AirScrewPlugin.Model
 {
     public class AirScrewParametrs
-    {
-        /// <summary>
-        /// Миссив всех параметров с инициализацией пороговых значений
-        /// </summary>
-       
+    {       
             /// <summary>
             /// Ширина лопасти
             /// </summary>
@@ -40,33 +36,33 @@ namespace AirScrewPlugin.Model
             /// <summary>
             /// Конструктор для дефолтной инциализации и инициализации границ значений
             /// </summary>
-            public AirScrewParametrs(float bladeWidth,
-                                     float bladeLength,
-                                     float innerRadius,
-                                     float outerRadius,
-                                     float numberOfBlades)
+            public AirScrewParametrs(/*float bladeWidth,
+                                   float bladeLength,
+                                   float innerRadius,
+                                   float outerRadius,
+                                   float numberOfBlades*/)
             {
                 _bladeWidth.MinValue = 15;
                 _bladeWidth.MaxValue = 60;
-                BladeWidth = bladeWidth; //150
+                //BladeWidth = bladeWidth; 
 
                 _bladeLength.MinValue = 100;
                 _bladeLength.MaxValue = 300;
-                BladeLength = bladeLength; //1000;
+                //BladeLength = bladeLength; 
 
 
-                _innerRadius.MinValue = BladeLength / 100;
-                _innerRadius.MaxValue = BladeLength / 2; 
-                InnerRadius = innerRadius; // 10;
+                _innerRadius.MinValue = BladeLength / 10;
+                _innerRadius.MaxValue = BladeLength / 2;
+                //InnerRadius = innerRadius; 
 
 
                 _outerRadius.MinValue = InnerRadius + (InnerRadius / 10);
-                _outerRadius.MaxValue = InnerRadius + ((InnerRadius / 100) * 150);
-                OuterRadius = outerRadius;
+                _outerRadius.MaxValue = InnerRadius * 2;
+                //OuterRadius = outerRadius;
 
                 _numberOfBlades.MinValue = 2;
                 _numberOfBlades.MaxValue = 15;
-                NumberOfBlades = numberOfBlades; // 3;
+                //NumberOfBlades = numberOfBlades; 
             }
             public float BladeWidth
             {
@@ -105,6 +101,8 @@ namespace AirScrewPlugin.Model
                 get => _innerRadius.Value;
                 set
                 {
+                    _innerRadius.MinValue = BladeLength / 10;
+                    _innerRadius.MaxValue = BladeLength / 2;
                     if (Validator.ValidateParametr(_innerRadius, value))
                     {
                         this._innerRadius.Value = value;
@@ -121,6 +119,8 @@ namespace AirScrewPlugin.Model
                 get => _outerRadius.Value;
                 set
                 {
+                    _outerRadius.MinValue = InnerRadius + (InnerRadius / 10);
+                    _outerRadius.MaxValue = InnerRadius * 2;
                     if (Validator.ValidateParametr(_outerRadius, value))
                     {
                         this._outerRadius.Value = value;

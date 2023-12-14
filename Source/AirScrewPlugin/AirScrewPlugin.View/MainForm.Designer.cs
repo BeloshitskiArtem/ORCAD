@@ -45,7 +45,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNumberOfBlades = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxForm = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -192,16 +192,16 @@
             this.textBoxNumberOfBlades.TabIndex = 11;
             this.textBoxNumberOfBlades.TextChanged += new System.EventHandler(this.textBoxNumberOfBlades_TextChanged);
             // 
-            // comboBox1
+            // comboBoxForm
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxForm.FormattingEnabled = true;
+            this.comboBoxForm.Items.AddRange(new object[] {
             "Прямоугольная",
             "Скруглённая"});
-            this.comboBox1.Location = new System.Drawing.Point(332, 222);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 16;
+            this.comboBoxForm.Location = new System.Drawing.Point(332, 222);
+            this.comboBoxForm.Name = "comboBoxForm";
+            this.comboBoxForm.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxForm.TabIndex = 16;
             // 
             // label11
             // 
@@ -228,7 +228,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 606);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxForm);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label11);
@@ -272,7 +272,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxNumberOfBlades;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxForm;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

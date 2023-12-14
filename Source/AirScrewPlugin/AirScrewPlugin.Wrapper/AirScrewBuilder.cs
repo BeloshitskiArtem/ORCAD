@@ -17,7 +17,7 @@ namespace AirScrewPlugin.Wrapper
         /// </summary>
         private readonly Kompas3DWrapper _kompas3DWrapper = new Kompas3DWrapper();
 
-        public void BuildAirScrew(AirScrewParametrs parametrs)
+        public void BuildAirScrew(AirScrewParametrs parametrs, int formOfBlade)
         {
             _kompas3DWrapper.OpenKompas();
             _kompas3DWrapper.CreateDocument3D();
@@ -30,7 +30,7 @@ namespace AirScrewPlugin.Wrapper
 
             // Создание лопастей
             _kompas3DWrapper.CreateSketchOnPlaneYOZ();
-            _kompas3DWrapper.CreateRectangleSed(parametrs.BladeWidth);
+            _kompas3DWrapper.CreateRectangleSed(parametrs.BladeWidth, formOfBlade);
             _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeLength);
             _kompas3DWrapper.CreateArrayBlade((int)parametrs.NumberOfBlades);
 
