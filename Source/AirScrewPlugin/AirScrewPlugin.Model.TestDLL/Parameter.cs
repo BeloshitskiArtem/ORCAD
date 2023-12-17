@@ -21,4 +21,3 @@
             public float Value { get; set; }
         }
     }
-

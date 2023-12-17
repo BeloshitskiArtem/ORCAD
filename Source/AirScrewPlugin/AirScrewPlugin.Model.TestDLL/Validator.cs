@@ -22,7 +22,8 @@
         /// <summary>
         /// Валидация одного параметра.
         /// </summary>
-        /// <param name="parameter">Параметр.</param>
+        /// <param name="parameter">Параметр для обозначения границ.</param>
+        /// <param name="value">Значение тестируемое.</param>
         /// <returns>True - проверка прошла, иначе - false.</returns>
         public static bool ValidateParameter(Parameter parameter, float value)
         {
