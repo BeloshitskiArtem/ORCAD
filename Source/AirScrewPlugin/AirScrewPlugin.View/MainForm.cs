@@ -21,6 +21,7 @@ namespace AirScrewPlugin.View
             // Запрещает писать текст в комбобоксе
             comboBoxForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxForm.SelectedIndex = 0;
+            buttonBuild.Enabled = false;
         }
 
         /// <summary>

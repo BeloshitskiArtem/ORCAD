@@ -137,41 +137,6 @@ namespace AirScrewPlugin.Wrapper
         }
 
         /// <summary>
-        /// Скругление
-        /// </summary>
-        public void CreateRounding()
-        {
-            /*EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_chamfer);
-            ksFilletDefinition filletAPI5 = EntityExtr.GetDefinition();
-            ksEntityCollection array = filletAPI5.array();
-            ksEntity ENT = array.GetByIndex(0);
-            EntityExtr.excluded = true;
-            EntityExtr.Create();*/
-
-            /*ksFilletDefinition filletAPI5 = EntityExtr.GetDefinition();
-            ksEntityCollection array = filletAPI5.array();
-            ksEntity ENT = array.GetByIndex(0);
-            if (ENT.type == (int)Obj3dType.o3d_edge)
-            {
-                ksEdgeDefinition ed = ENT.GetDefinition();
-                //MessageBox.Show(ed.GetLength(0x1).ToString());
-            }*/
-
-            /*EntityExtr = (ksEntity)Part.NewEntity((short)Obj3dType.o3d_chamfer);
-            ksFilletDefinition fillet = EntityExtr.GetDefinition();*/
-
-            var entityRotated =
-                (ksEntity)Part.NewEntity((short)Obj3dType.o3d_baseRotated);
-            var entityRotatedDefinition =
-                (ksBaseRotatedDefinition)entityRotated.GetDefinition();
-
-            entityRotatedDefinition.directionType = 0;
-            entityRotatedDefinition.SetSideParam(true, 360);
-            entityRotatedDefinition.SetSketch(Sketch);
-            entityRotated.Create();
-        }
-
-        /// <summary>
         /// Построение отрезка - основания лопасти
         /// </summary>
         public void CreateRectangleSed(float width, int indexOfFormBlades)

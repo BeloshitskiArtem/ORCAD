@@ -53,7 +53,7 @@
             // 
             // buttonBuild
             // 
-            this.buttonBuild.Location = new System.Drawing.Point(138, 388);
+            this.buttonBuild.Location = new System.Drawing.Point(35, 306);
             this.buttonBuild.Name = "buttonBuild";
             this.buttonBuild.Size = new System.Drawing.Size(464, 82);
             this.buttonBuild.TabIndex = 0;
@@ -73,7 +73,7 @@
             // textBoxBladeWidth
             // 
             this.textBoxBladeWidth.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxBladeWidth.Location = new System.Drawing.Point(332, 66);
+            this.textBoxBladeWidth.Location = new System.Drawing.Point(234, 67);
             this.textBoxBladeWidth.Name = "textBoxBladeWidth";
             this.textBoxBladeWidth.Size = new System.Drawing.Size(121, 20);
             this.textBoxBladeWidth.TabIndex = 2;
@@ -82,24 +82,24 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(459, 69);
+            this.label2.Location = new System.Drawing.Point(361, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "50 — 900мм";
+            this.label2.Text = "15 — 60мм";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(459, 114);
+            this.label3.Location = new System.Drawing.Point(361, 115);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "100 — 2000мм";
+            this.label3.Text = "100 — 300мм";
             // 
             // textBoxBladeLength
             // 
-            this.textBoxBladeLength.Location = new System.Drawing.Point(332, 107);
+            this.textBoxBladeLength.Location = new System.Drawing.Point(234, 108);
             this.textBoxBladeLength.Name = "textBoxBladeLength";
             this.textBoxBladeLength.Size = new System.Drawing.Size(121, 20);
             this.textBoxBladeLength.TabIndex = 5;
@@ -117,15 +117,15 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(459, 152);
+            this.label5.Location = new System.Drawing.Point(361, 153);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(220, 13);
+            this.label5.Size = new System.Drawing.Size(178, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "не менее 1% от длинны лопасти Lлопасти";
+            this.label5.Text = "От Lлопасти / 10, до Lлопасти / 2\r\n";
             // 
             // textBoxInnerRadius
             // 
-            this.textBoxInnerRadius.Location = new System.Drawing.Point(332, 149);
+            this.textBoxInnerRadius.Location = new System.Drawing.Point(234, 150);
             this.textBoxInnerRadius.Name = "textBoxInnerRadius";
             this.textBoxInnerRadius.Size = new System.Drawing.Size(121, 20);
             this.textBoxInnerRadius.TabIndex = 8;
@@ -136,22 +136,22 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(32, 152);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(301, 13);
+            this.label6.Size = new System.Drawing.Size(170, 26);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Внутренний радиус окружности основания винта (Rвнутр)";
+            this.label6.Text = "Внутренний радиус окружности \r\nоснования винта (Rвнутр)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(459, 188);
+            this.label7.Location = new System.Drawing.Point(361, 189);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(244, 13);
+            this.label7.Size = new System.Drawing.Size(164, 13);
             this.label7.TabIndex = 12;
-            this.label7.Text = "внутренний радиус Rвнутр + от 10%, до + 150%";
+            this.label7.Text = "От Rвнутр + 10%, до Rвнутр * 2";
             // 
             // textBoxOuterRadius
             // 
-            this.textBoxOuterRadius.Location = new System.Drawing.Point(332, 185);
+            this.textBoxOuterRadius.Location = new System.Drawing.Point(234, 186);
             this.textBoxOuterRadius.Name = "textBoxOuterRadius";
             this.textBoxOuterRadius.Size = new System.Drawing.Size(121, 20);
             this.textBoxOuterRadius.TabIndex = 11;
@@ -162,9 +162,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(33, 189);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(285, 13);
+            this.label8.Size = new System.Drawing.Size(156, 26);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Внешний радиус окружности основания винта (Rвнеш)";
+            this.label8.Text = "Внешний радиус окружности \r\nоснования винта (Rвнеш)";
             // 
             // label9
             // 
@@ -180,13 +180,13 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(33, 259);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(251, 13);
+            this.label10.Size = new System.Drawing.Size(197, 26);
             this.label10.TabIndex = 14;
-            this.label10.Text = "Количество лопастей на окружности основания";
+            this.label10.Text = "Количество лопастей на окружности \r\nоснования";
             // 
             // textBoxNumberOfBlades
             // 
-            this.textBoxNumberOfBlades.Location = new System.Drawing.Point(332, 258);
+            this.textBoxNumberOfBlades.Location = new System.Drawing.Point(234, 259);
             this.textBoxNumberOfBlades.Name = "textBoxNumberOfBlades";
             this.textBoxNumberOfBlades.Size = new System.Drawing.Size(121, 20);
             this.textBoxNumberOfBlades.TabIndex = 11;
@@ -198,7 +198,7 @@
             this.comboBoxForm.Items.AddRange(new object[] {
             "Прямоугольная",
             "Скруглённая"});
-            this.comboBoxForm.Location = new System.Drawing.Point(332, 222);
+            this.comboBoxForm.Location = new System.Drawing.Point(234, 223);
             this.comboBoxForm.Name = "comboBoxForm";
             this.comboBoxForm.Size = new System.Drawing.Size(121, 21);
             this.comboBoxForm.TabIndex = 16;
@@ -206,19 +206,19 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(459, 261);
+            this.label11.Location = new System.Drawing.Point(361, 262);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(229, 13);
+            this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 12;
-            this.label11.Text = "не менее 2, не более чем Rвнеш/ Влопасти";
+            this.label11.Text = "От 2, до 15";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(703, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(538, -3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(190, 597);
+            this.pictureBox1.Size = new System.Drawing.Size(190, 607);
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
@@ -226,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 606);
+            this.ClientSize = new System.Drawing.Size(714, 606);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBoxForm);
             this.Controls.Add(this.label10);
@@ -246,6 +246,8 @@
             this.Controls.Add(this.textBoxBladeWidth);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonBuild);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
