@@ -1,75 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AirScrewPlugin.Model;
-using AirScrewPlugin.Wrapper;
-
-
-namespace AirScrewPlugin.View
+﻿namespace AirScrewPlugin.View
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using AirScrewPlugin.Model;
+    using AirScrewPlugin.Wrapper;
+
+    /// <summary>
+    /// Класс Main.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Действия конструктора:
+        /// 1. Запрещает писать текст в комбобоксе
+        /// 2. Изначально значение комбо-бокса = 1
+        /// 3. Делает кнопку постостроения не активной, дляя дальнейшей валидации.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            // Запрещает писать текст в комбобоксе
             comboBoxForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboBoxForm.SelectedIndex = 0;
             buttonBuild.Enabled = false;
         }
 
         /// <summary>
-        /// Контейнер параметров детали
+        /// Контейнер параметров детали.
         /// </summary>
-        AirScrewParametrs parametrs = new AirScrewParametrs(/*25, 110, 10, 25, 4*/); 
+        #pragma warning disable SA1201 // Elements should appear in the correct order
+        private readonly AirScrewParametrs _parameters = new AirScrewParametrs();
+        #pragma warning restore SA1201 // Elements should appear in the correct order
 
         /// <summary>
-        /// Объект-сроитель
+        /// Объект-сроитель.
         /// </summary>
-        private AirScrewBuilder _builder = new AirScrewBuilder();
+        private readonly AirScrewBuilder _builder = new AirScrewBuilder();
 
         /// <summary>
-        /// Доп валидация всех параметров для активации/дизактивации кнопки build
+        /// Доп валидация всех параметров для активации/дизактивации кнопки build.
         /// </summary>
-        private void VakidationAllParam()
+        private void ValidationAllParam()
         {
-            //Флаг  актива
-            bool FlagActiveButton = true;
-            var ErrorTextBox = new TextBox();   
+            bool flagActiveButton = true;
+            var errorTextBox = new TextBox();
             try
             {
-                ErrorTextBox = textBoxBladeWidth;
-                parametrs.BladeWidth = float.Parse(textBoxBladeWidth.Text);
-                ErrorTextBox = textBoxBladeLength;
-                parametrs.BladeLength = float.Parse(textBoxBladeLength.Text);
-                ErrorTextBox = textBoxInnerRadius;
-                parametrs.InnerRadius = float.Parse(textBoxInnerRadius.Text);
-                ErrorTextBox = textBoxOuterRadius;
-                parametrs.OuterRadius = float.Parse(textBoxOuterRadius.Text);
-                ErrorTextBox = textBoxNumberOfBlades;
-                parametrs.NumberOfBlades = float.Parse(textBoxNumberOfBlades.Text);
+                errorTextBox = textBoxBladeWidth;
+                _parameters.BladeWidth = float.Parse(textBoxBladeWidth.Text);
+                errorTextBox = textBoxBladeLength;
+                _parameters.BladeLength = float.Parse(textBoxBladeLength.Text);
+                errorTextBox = textBoxInnerRadius;
+                _parameters.InnerRadius = float.Parse(textBoxInnerRadius.Text);
+                errorTextBox = textBoxOuterRadius;
+                _parameters.OuterRadius = float.Parse(textBoxOuterRadius.Text);
+                errorTextBox = textBoxNumberOfBlades;
+                _parameters.NumberOfBlades = float.Parse(textBoxNumberOfBlades.Text);
             }
             catch (Exception)
             {
-                FlagActiveButton = false;
+                flagActiveButton = false;
 
-                if (ErrorTextBox.Text.Length != 0)
+                if (errorTextBox.Text.Length != 0)
                 {
-                    ErrorTextBox.BackColor = Color.LightPink; 
+                    errorTextBox.BackColor = Color.LightPink;
                 }
                 else
                 {
-                    ErrorTextBox.BackColor = Color.White;
+                    errorTextBox.BackColor = Color.White;
                 }
             }
 
-            if (FlagActiveButton == false)
+            if (flagActiveButton == false)
             {
                 buttonBuild.Enabled = false;
             }
@@ -80,17 +82,17 @@ namespace AirScrewPlugin.View
         }
 
         private void buttonBuild_Click(object sender, EventArgs e)
-        {           
-            _builder.BuildAirScrew(parametrs, comboBoxForm.SelectedIndex);
+        {
+            _builder.BuildAirScrew(_parameters, comboBoxForm.SelectedIndex);
         }
 
         private void textBoxBladeWidth_TextChanged(object sender, EventArgs e)
         {
-            textBoxBladeWidth.Text = Validator.ParametrCheck(textBoxBladeWidth.Text);
-            VakidationAllParam();
+            textBoxBladeWidth.Text = Validator.ParameterCheck(textBoxBladeWidth.Text);
+            ValidationAllParam();
             try
             {
-                parametrs.BladeWidth = float.Parse(textBoxBladeWidth.Text);
+                _parameters.BladeWidth = float.Parse(textBoxBladeWidth.Text);
                 textBoxBladeWidth.BackColor = Color.LightGreen;
             }
             catch (Exception)
@@ -101,11 +103,11 @@ namespace AirScrewPlugin.View
 
         private void textBoxBladeLength_TextChanged(object sender, EventArgs e)
         {
-            textBoxBladeLength.Text = Validator.ParametrCheck(textBoxBladeLength.Text);
-            VakidationAllParam();
+            textBoxBladeLength.Text = Validator.ParameterCheck(textBoxBladeLength.Text);
+            ValidationAllParam();
             try
             {
-                parametrs.BladeLength = float.Parse(textBoxBladeLength.Text);
+                _parameters.BladeLength = float.Parse(textBoxBladeLength.Text);
                 textBoxBladeLength.BackColor = Color.LightGreen;
             }
             catch (Exception)
@@ -116,11 +118,11 @@ namespace AirScrewPlugin.View
 
         private void textBoxInnerRadius_TextChanged(object sender, EventArgs e)
         {
-            textBoxInnerRadius.Text = Validator.ParametrCheck(textBoxInnerRadius.Text);
-            VakidationAllParam();
+            textBoxInnerRadius.Text = Validator.ParameterCheck(textBoxInnerRadius.Text);
+            ValidationAllParam();
             try
             {
-                parametrs.InnerRadius = float.Parse(textBoxInnerRadius.Text);
+                _parameters.InnerRadius = float.Parse(textBoxInnerRadius.Text);
                 textBoxInnerRadius.BackColor = Color.LightGreen;
             }
             catch (Exception)
@@ -131,11 +133,11 @@ namespace AirScrewPlugin.View
 
         private void textBoxOuterRadius_TextChanged(object sender, EventArgs e)
         {
-            textBoxOuterRadius.Text = Validator.ParametrCheck(textBoxOuterRadius.Text);
-            VakidationAllParam();
+            textBoxOuterRadius.Text = Validator.ParameterCheck(textBoxOuterRadius.Text);
+            ValidationAllParam();
             try
             {
-                parametrs.OuterRadius = float.Parse(textBoxOuterRadius.Text);
+                _parameters.OuterRadius = float.Parse(textBoxOuterRadius.Text);
                 textBoxOuterRadius.BackColor = Color.LightGreen;
             }
             catch (Exception)
@@ -146,11 +148,11 @@ namespace AirScrewPlugin.View
 
         private void textBoxNumberOfBlades_TextChanged(object sender, EventArgs e)
         {
-            textBoxNumberOfBlades.Text = Validator.ParametrCheck(textBoxNumberOfBlades.Text);
-            VakidationAllParam();
+            textBoxNumberOfBlades.Text = Validator.ParameterCheck(textBoxNumberOfBlades.Text);
+            ValidationAllParam();
             try
             {
-                parametrs.NumberOfBlades = float.Parse(textBoxNumberOfBlades.Text);
+                _parameters.NumberOfBlades = float.Parse(textBoxNumberOfBlades.Text);
                 textBoxNumberOfBlades.BackColor = Color.LightGreen;
             }
             catch (Exception)

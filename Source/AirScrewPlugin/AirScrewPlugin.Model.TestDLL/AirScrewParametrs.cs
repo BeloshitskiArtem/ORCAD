@@ -1,75 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AirScrewPlugin.Model
+﻿namespace AirScrewPlugin.Model
 {
+    using System;
+
+    /// <summary>
+    /// Класс-контейнер параметров винта.
+    /// </summary>
     public class AirScrewParametrs
-    {       
+    {
             /// <summary>
-            /// Ширина лопасти
+            /// Ширина лопасти.
             /// </summary>
-            private Parametr _bladeWidth = new Parametr();
+            private readonly Parameter _bladeWidth = new Parameter();
 
             /// <summary>
-            /// Длинна лопасти
+            /// Длинна лопасти.
             /// </summary>
-            private Parametr _bladeLength = new Parametr();
+            private readonly Parameter _bladeLength = new Parameter();
 
             /// <summary>
-            /// ВНУТРЕННИЙ радиус
+            /// ВНУТРЕННИЙ радиус.
             /// </summary>
-            private Parametr _innerRadius = new Parametr();
+            private readonly Parameter _innerRadius = new Parameter();
 
             /// <summary>
-            /// ВНЕШНИЙ радиус
+            /// ВНЕШНИЙ радиус.
             /// </summary>
-            private Parametr _outerRadius = new Parametr();
+            private readonly Parameter _outerRadius = new Parameter();
 
             /// <summary>
-            /// Колличество лопастей
+            /// Колличество лопастей.
             /// </summary>
-            private Parametr _numberOfBlades = new Parametr();
+            private readonly Parameter _numberOfBlades = new Parameter();
 
             /// <summary>
-            /// Конструктор для дефолтной инциализации и инициализации границ значений
+            /// Конструктор для дефолтной инциализации и инициализации границ значений.
             /// </summary>
-            public AirScrewParametrs(/*float bladeWidth,
-                                   float bladeLength,
-                                   float innerRadius,
-                                   float outerRadius,
-                                   float numberOfBlades*/)
+            public AirScrewParametrs()
             {
                 _bladeWidth.MinValue = 15;
                 _bladeWidth.MaxValue = 60;
-                //BladeWidth = bladeWidth; 
 
                 _bladeLength.MinValue = 100;
                 _bladeLength.MaxValue = 300;
-                //BladeLength = bladeLength; 
-
 
                 _innerRadius.MinValue = BladeLength / 10;
                 _innerRadius.MaxValue = BladeLength / 2;
-                //InnerRadius = innerRadius; 
-
 
                 _outerRadius.MinValue = InnerRadius + (InnerRadius / 10);
                 _outerRadius.MaxValue = InnerRadius * 2;
-                //OuterRadius = outerRadius;
 
                 _numberOfBlades.MinValue = 2;
                 _numberOfBlades.MaxValue = 15;
-                //NumberOfBlades = numberOfBlades; 
             }
+
+            /// <summary>
+            /// Свойство для шмрмны лопасти.
+            /// </summary>
             public float BladeWidth
             {
                 get => _bladeWidth.Value;
                 set
                 {
-                    if (Validator.ValidateParametr(_bladeWidth, value))
+                    if (Validator.ValidateParameter(_bladeWidth, value))
                     {
                         this._bladeWidth.Value = value;
                     }
@@ -79,13 +71,16 @@ namespace AirScrewPlugin.Model
                     }
                 }
             }
-        
+
+            /// <summary>
+            /// Свойство для длинны лопасти.
+            /// </summary>
             public float BladeLength
             {
                 get => _bladeLength.Value;
                 set
                 {
-                    if (Validator.ValidateParametr(_bladeLength, value))
+                    if (Validator.ValidateParameter(_bladeLength, value))
                     {
                         this._bladeLength.Value = value;
                     }
@@ -96,6 +91,9 @@ namespace AirScrewPlugin.Model
                 }
             }
 
+            /// <summary>
+            /// Свойство для внутреннего радиуса.
+            /// </summary>
             public float InnerRadius
             {
                 get => _innerRadius.Value;
@@ -103,7 +101,7 @@ namespace AirScrewPlugin.Model
                 {
                     _innerRadius.MinValue = BladeLength / 10;
                     _innerRadius.MaxValue = BladeLength / 2;
-                    if (Validator.ValidateParametr(_innerRadius, value))
+                    if (Validator.ValidateParameter(_innerRadius, value))
                     {
                         this._innerRadius.Value = value;
                     }
@@ -114,6 +112,9 @@ namespace AirScrewPlugin.Model
                 }
             }
 
+            /// <summary>
+            /// Свойство для внешнего радиуса.
+            /// </summary>
             public float OuterRadius
             {
                 get => _outerRadius.Value;
@@ -121,7 +122,7 @@ namespace AirScrewPlugin.Model
                 {
                     _outerRadius.MinValue = InnerRadius + (InnerRadius / 10);
                     _outerRadius.MaxValue = InnerRadius * 2;
-                    if (Validator.ValidateParametr(_outerRadius, value))
+                    if (Validator.ValidateParameter(_outerRadius, value))
                     {
                         this._outerRadius.Value = value;
                     }
@@ -132,12 +133,15 @@ namespace AirScrewPlugin.Model
                 }
             }
 
+            /// <summary>
+            /// Свойство для кол-во лопастей.
+            /// </summary>
             public float NumberOfBlades
             {
                 get => _numberOfBlades.Value;
                 set
                 {
-                    if (Validator.ValidateParametr(_numberOfBlades, value))
+                    if (Validator.ValidateParameter(_numberOfBlades, value))
                     {
                         this._numberOfBlades.Value = value;
                     }
@@ -149,5 +153,3 @@ namespace AirScrewPlugin.Model
             }
     }
 }
-
-

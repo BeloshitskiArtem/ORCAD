@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AirScrewPlugin.Model;
-
-namespace AirScrewPlugin.Wrapper
+﻿namespace AirScrewPlugin.Wrapper
 {
+    using AirScrewPlugin.Model;
+
     /// <summary>
-    /// Builder
+    /// Builder воздушного винта.
     /// </summary>
     public class AirScrewBuilder
     {
@@ -17,16 +12,21 @@ namespace AirScrewPlugin.Wrapper
         /// </summary>
         private readonly Kompas3DWrapper _kompas3DWrapper = new Kompas3DWrapper();
 
+        /// <summary>
+        /// Построить винт.
+        /// </summary>
+        /// <param name="parametrs">Класс-контейнер параметров.</param>
+        /// <param name="formOfBlade">Отдельно форма лопасти.</param>
         public void BuildAirScrew(AirScrewParametrs parametrs, int formOfBlade)
         {
             _kompas3DWrapper.OpenKompas();
             _kompas3DWrapper.CreateDocument3D();
             _kompas3DWrapper.CreatePart();
 
-            // Создание 
+            // Создание
             _kompas3DWrapper.CreateSketchOnPlaneXOY();
             _kompas3DWrapper.CreateCircle(parametrs.OuterRadius);
-            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeWidth+10);
+            _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeWidth + 10);
 
             // Создание лопастей
             _kompas3DWrapper.CreateSketchOnPlaneYOZ();
