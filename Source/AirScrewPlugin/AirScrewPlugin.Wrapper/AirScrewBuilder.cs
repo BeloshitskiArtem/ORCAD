@@ -19,6 +19,8 @@
         /// <param name="formOfBlade">Отдельно форма лопасти.</param>
         public void BuildAirScrew(AirScrewParametrs parametrs, int formOfBlade)
         {
+            bool flagForFillet = false;
+
             _kompas3DWrapper.OpenKompas();
             _kompas3DWrapper.CreateDocument3D();
             _kompas3DWrapper.CreatePart();
@@ -30,14 +32,29 @@
 
             // Создание лопастей
             _kompas3DWrapper.CreateSketchOnPlaneYOZ();
-            _kompas3DWrapper.CreateRectangleSed(parametrs.BladeWidth, formOfBlade);
+            if (formOfBlade == 0 || formOfBlade == 2)
+            {
+                _kompas3DWrapper.CreateRectangleSed(parametrs.BladeWidth);
+            }
+            else if (formOfBlade == 1)
+            {
+                _kompas3DWrapper.CreateEllipseSed(parametrs.BladeWidth);
+            }
+
             _kompas3DWrapper.CreateExtrusionParam(parametrs.BladeLength);
-            _kompas3DWrapper.CreateArrayBlade((int)parametrs.NumberOfBlades);
+            if (formOfBlade == 2)
+            {
+                _kompas3DWrapper.CreateFilletForBlade(parametrs.BladeLength, parametrs.BladeWidth);
+                flagForFillet = true;
+            }
+
+            _kompas3DWrapper.CreateArrayBlade((int)parametrs.NumberOfBlades, flagForFillet);
 
             // Cоздание вырезания
             _kompas3DWrapper.CreateSketchOnPlaneXOY();
             _kompas3DWrapper.CreateCircle(parametrs.InnerRadius);
             _kompas3DWrapper.CreateCutExtrusionParam();
+            _kompas3DWrapper.CreateFilletForCircle(parametrs);
         }
     }
 }

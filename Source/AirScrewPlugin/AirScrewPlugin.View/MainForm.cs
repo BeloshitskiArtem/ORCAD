@@ -1,16 +1,29 @@
 ﻿namespace AirScrewPlugin.View
 {
     using System;
+    using System.Diagnostics;
     using System.Drawing;
+    using System.IO;
     using System.Windows.Forms;
     using AirScrewPlugin.Model;
     using AirScrewPlugin.Wrapper;
+    using Microsoft.VisualBasic.Devices;
 
     /// <summary>
     /// Класс Main.
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Контейнер параметров детали.
+        /// </summary>
+        private readonly AirScrewParametrs _parameters = new AirScrewParametrs();
+
+        /// <summary>
+        /// Объект-сроитель.
+        /// </summary>
+        private readonly AirScrewBuilder _builder = new AirScrewBuilder();
+
         /// <summary>
         /// Действия конструктора:
         /// 1. Запрещает писать текст в комбобоксе
@@ -24,18 +37,6 @@
             comboBoxForm.SelectedIndex = 0;
             buttonBuild.Enabled = false;
         }
-
-        /// <summary>
-        /// Контейнер параметров детали.
-        /// </summary>
-        #pragma warning disable SA1201 // Elements should appear in the correct order
-        private readonly AirScrewParametrs _parameters = new AirScrewParametrs();
-        #pragma warning restore SA1201 // Elements should appear in the correct order
-
-        /// <summary>
-        /// Объект-сроитель.
-        /// </summary>
-        private readonly AirScrewBuilder _builder = new AirScrewBuilder();
 
         /// <summary>
         /// Доп валидация всех параметров для активации/дизактивации кнопки build.
@@ -61,24 +62,18 @@
             {
                 flagActiveButton = false;
 
-                if (errorTextBox.Text.Length != 0)
-                {
-                    errorTextBox.BackColor = Color.LightPink;
-                }
-                else
-                {
-                    errorTextBox.BackColor = Color.White;
-                }
+                errorTextBox.BackColor = errorTextBox.Text.Length != 0 ? Color.LightPink : Color.White;
             }
 
-            if (flagActiveButton == false)
+            /*if (flagActiveButton == false)
             {
                 buttonBuild.Enabled = false;
             }
             else
             {
                 buttonBuild.Enabled = true;
-            }
+            }*/
+            buttonBuild.Enabled = flagActiveButton != false;
         }
 
         private void buttonBuild_Click(object sender, EventArgs e)
@@ -159,6 +154,35 @@
             {
                 textBoxNumberOfBlades.BackColor = Color.LightPink;
             }
+        }
+
+        private void buttonStressTests_Click(object sender, EventArgs e)
+        {
+            var builder = new AirScrewBuilder();
+            var stopWatch = new Stopwatch();
+            var parameters = new AirScrewParametrs();
+            var streamWriter = new StreamWriter($"log.txt", true);
+            Process currentProcess = System.Diagnostics.Process.GetCurrentProcess();
+            var count = 0;
+            while (true)
+            {
+                const double gigabyteInByte = 0.000000000931322574615478515625;
+                stopWatch.Start();
+                builder.BuildAirScrew(_parameters, comboBoxForm.SelectedIndex);
+                var computerInfo = new ComputerInfo();
+                var usedMemory = (computerInfo.TotalPhysicalMemory
+                                  - computerInfo.AvailablePhysicalMemory)
+                                 * gigabyteInByte;
+                stopWatch.Stop();
+                stopWatch.Reset();
+                streamWriter.WriteLine(
+                    $"{++count}\t{stopWatch.Elapsed:hh\\:mm\\:ss}\t{usedMemory}");
+                streamWriter.Flush();
+            }
+
+            streamWriter.Close();
+            streamWriter.Dispose();
+            Console.Write($"End {new ComputerInfo().TotalPhysicalMemory}");
         }
     }
 }

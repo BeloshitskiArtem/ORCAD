@@ -48,6 +48,7 @@
             this.comboBoxForm = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonStressTests = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,6 +78,7 @@
             this.textBoxBladeWidth.Name = "textBoxBladeWidth";
             this.textBoxBladeWidth.Size = new System.Drawing.Size(121, 20);
             this.textBoxBladeWidth.TabIndex = 2;
+            this.textBoxBladeWidth.Text = "20";
             this.textBoxBladeWidth.TextChanged += new System.EventHandler(this.textBoxBladeWidth_TextChanged);
             // 
             // label2
@@ -103,6 +105,7 @@
             this.textBoxBladeLength.Name = "textBoxBladeLength";
             this.textBoxBladeLength.Size = new System.Drawing.Size(121, 20);
             this.textBoxBladeLength.TabIndex = 5;
+            this.textBoxBladeLength.Text = "100";
             this.textBoxBladeLength.TextChanged += new System.EventHandler(this.textBoxBladeLength_TextChanged);
             // 
             // label4
@@ -129,6 +132,7 @@
             this.textBoxInnerRadius.Name = "textBoxInnerRadius";
             this.textBoxInnerRadius.Size = new System.Drawing.Size(121, 20);
             this.textBoxInnerRadius.TabIndex = 8;
+            this.textBoxInnerRadius.Text = "15";
             this.textBoxInnerRadius.TextChanged += new System.EventHandler(this.textBoxInnerRadius_TextChanged);
             // 
             // label6
@@ -155,6 +159,7 @@
             this.textBoxOuterRadius.Name = "textBoxOuterRadius";
             this.textBoxOuterRadius.Size = new System.Drawing.Size(121, 20);
             this.textBoxOuterRadius.TabIndex = 11;
+            this.textBoxOuterRadius.Text = "20";
             this.textBoxOuterRadius.TextChanged += new System.EventHandler(this.textBoxOuterRadius_TextChanged);
             // 
             // label8
@@ -190,6 +195,7 @@
             this.textBoxNumberOfBlades.Name = "textBoxNumberOfBlades";
             this.textBoxNumberOfBlades.Size = new System.Drawing.Size(121, 20);
             this.textBoxNumberOfBlades.TabIndex = 11;
+            this.textBoxNumberOfBlades.Text = "3";
             this.textBoxNumberOfBlades.TextChanged += new System.EventHandler(this.textBoxNumberOfBlades_TextChanged);
             // 
             // comboBoxForm
@@ -197,7 +203,8 @@
             this.comboBoxForm.FormattingEnabled = true;
             this.comboBoxForm.Items.AddRange(new object[] {
             "Прямоугольная",
-            "Скруглённая"});
+            "Скруглённая",
+            "Эллептическая"});
             this.comboBoxForm.Location = new System.Drawing.Point(234, 223);
             this.comboBoxForm.Name = "comboBoxForm";
             this.comboBoxForm.Size = new System.Drawing.Size(121, 21);
@@ -222,11 +229,22 @@
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
+            // buttonStressTests
+            // 
+            this.buttonStressTests.Location = new System.Drawing.Point(35, 394);
+            this.buttonStressTests.Name = "buttonStressTests";
+            this.buttonStressTests.Size = new System.Drawing.Size(464, 75);
+            this.buttonStressTests.TabIndex = 18;
+            this.buttonStressTests.Text = "StressTesting";
+            this.buttonStressTests.UseVisualStyleBackColor = true;
+            this.buttonStressTests.Click += new System.EventHandler(this.buttonStressTests_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 606);
+            this.Controls.Add(this.buttonStressTests);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBoxForm);
             this.Controls.Add(this.label10);
@@ -277,6 +295,7 @@
         private System.Windows.Forms.ComboBox comboBoxForm;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonStressTests;
     }
 }
 
