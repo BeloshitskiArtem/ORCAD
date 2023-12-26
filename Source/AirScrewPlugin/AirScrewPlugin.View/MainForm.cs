@@ -160,6 +160,7 @@
         {
             var builder = new AirScrewBuilder();
             var stopWatch = new Stopwatch();
+            stopWatch.Start();
             var parameters = new AirScrewParametrs();
             var streamWriter = new StreamWriter($"log.txt", true);
             Process currentProcess = System.Diagnostics.Process.GetCurrentProcess();
@@ -167,19 +168,19 @@
             while (true)
             {
                 const double gigabyteInByte = 0.000000000931322574615478515625;
-                stopWatch.Start();
                 builder.BuildAirScrew(_parameters, comboBoxForm.SelectedIndex);
                 var computerInfo = new ComputerInfo();
                 var usedMemory = (computerInfo.TotalPhysicalMemory
                                   - computerInfo.AvailablePhysicalMemory)
                                  * gigabyteInByte;
-                stopWatch.Stop();
-                stopWatch.Reset();
+
+                /*stopWatch.Reset();*/
                 streamWriter.WriteLine(
                     $"{++count}\t{stopWatch.Elapsed:hh\\:mm\\:ss}\t{usedMemory}");
                 streamWriter.Flush();
             }
 
+            stopWatch.Stop();
             streamWriter.Close();
             streamWriter.Dispose();
             Console.Write($"End {new ComputerInfo().TotalPhysicalMemory}");
