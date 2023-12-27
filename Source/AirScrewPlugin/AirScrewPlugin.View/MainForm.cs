@@ -156,6 +156,9 @@
             }
         }
 
+        /// <summary>
+        /// Оставленно на главной форме т.к. планируется дальнейшее расширение плагина НЕ УДАЛЯТЬ.
+        /// </summary>
         private void buttonStressTests_Click(object sender, EventArgs e)
         {
             var builder = new AirScrewBuilder();
